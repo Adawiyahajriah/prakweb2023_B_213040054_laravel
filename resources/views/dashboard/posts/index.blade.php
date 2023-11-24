@@ -5,6 +5,12 @@
   <h1 class="h2">My post</h1>
 </div>
 
+@if(session()->has('succes'))
+<div class="alert-success" role="alert">
+  {{ session('success')}}
+</div>
+@endif
+
 <div class="table-responsive small">
     <table class="table table-striped table-sm">
       <thead>
