@@ -12,9 +12,9 @@
                 @endif
                 <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Search.." name="search" value="{{ request('search') }}">
-                <a href="/dashboard/posts" class="btn btn-success"><span data-feather="arrow-left"></span>Back to all my post</a>
+                <a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn btn-success"><span data-feather="arrow-left"></span>Back to all my post</a>
                     <a href="" class="btn btn-warning"><span data-feather="edit"></span>Edit</a>
-                        <a href="" class="btn btn-danger"><span data-feather="x-circle"></span>Delete</a>
+                        <a href="" class="btn btn-danger"><span data-feather="x-circle">Delete</span>Delete</a>
                 </div>
             </form>
         </div>
