@@ -17,6 +17,8 @@
                         <a href="" class="btn btn-danger"><span data-feather="x-circle">Delete</span>Delete</a>
                 </div>
             </form>
+
+            
         </div>
     </div>
     @endsection

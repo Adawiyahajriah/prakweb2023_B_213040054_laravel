@@ -6,7 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
-use illuminate\Support\Str;
+use Illuminate\Support\Str; // Corrected the case of 'illuminate'
 
 class DashboardPostController extends Controller
 {
@@ -39,8 +39,13 @@ class DashboardPostController extends Controller
             'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
             'category' => 'required',
+            'image' => 'image|file|max:1024',
             'body' => 'required'
         ]);
+
+        if($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('post-images');
+        }
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
@@ -82,8 +87,8 @@ class DashboardPostController extends Controller
             'body' => 'required'
         ]);
 
-        if($request->slug != $post->slug) {
-            $rulues['slug'] = 'required|unique:posts';
+        if ($request->slug != $post->slug) {
+            $rules['slug'] = 'required|unique:posts';
         }
 
         $validatedData = $request->validate($rules);
@@ -104,13 +109,12 @@ class DashboardPostController extends Controller
     {
         Post::destroy($post->id);
 
-        return redirect('/dashboard/post')->with('success', 'Post has been added!');
+        return redirect('/dashboard/post')->with('success', 'Post has been deleted!'); // Corrected the success message
     }
 
     public function checkSlug(Request $request)
-{
-    $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
-    return response()->json(['slug' => $slug]);
-}
-
+    {
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+        return response()->json(['slug' => $slug]);
+    }
 }
