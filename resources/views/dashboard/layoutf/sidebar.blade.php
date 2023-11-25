@@ -16,7 +16,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : '' }}" href="#">
+                <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : '' }}" href="dashboard-posts">
                   <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                   My posts
                 </a>
@@ -38,6 +38,21 @@
               </form>
               </li>
             </ul>
+
+            @can('admin')
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Administrator</span>
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link {{ Request::is('dashboard/categories*') ? 'active' : '' }}" href="dashboard-categories">
+                    <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                    Post Categories
+                  </a>
+                </li>
+              </ul>
+            </h6>
+            @endcan
+
           </div>
         </div>
       </div>
