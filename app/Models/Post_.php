@@ -5,7 +5,7 @@ namespace App\Models;
 
 class Post
 {
-    private static $blog_post = [
+    private static $blog_posts = [
         [
             "title" => "Judul post pertama",
             "slug" => "judul-post-pertama",
@@ -22,7 +22,7 @@ class Post
 
     public static function all()
     {
-        return collect(self::$blog_post);
+        return collect(self::$blog_posts);
     }
 
     public static function find($slug)
